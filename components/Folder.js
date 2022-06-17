@@ -20,7 +20,7 @@ const Folder = () => {
 		>
 			<div
 				style={{
-					padding: '0 7px',
+					padding: '4px 7px',
 					borderRadius: '7px',
 					backgroundColor: selected ? 'rgb(57, 56, 55)' : 'transparent',
 				}}
