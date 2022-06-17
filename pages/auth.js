@@ -1,12 +1,12 @@
-import React from 'react'
-import AuthModal from '../components/authModal'
-
+import React from "react";
+import AuthModal from "../components/auth/authModal";
+import styles from "../styles/Home.module.scss";
 const auth = () => {
-	return (
-		<>
-			<AuthModal />
-		</>
-	)
-}
+  return (
+    <div className={[styles.container, styles.main].join(" ")}>
+      <AuthModal />
+    </div>
+  );
+};
 
-export default auth
+export default auth;
