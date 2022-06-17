@@ -23,7 +23,7 @@ const Auth = () => {
 	)
 }
 
-export default auth
+export default Auth
 
 //https://api.nasa.gov/planetary/apod
 //
