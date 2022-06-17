@@ -4,7 +4,7 @@ import AuthModal from '../components/auth/authModal'
 import { AuthState } from '../AuthContext'
 import styles from '../styles/Home.module.scss'
 
-const auth = () => {
+const Auth = () => {
 	const router = useRouter()
 	const { user } = AuthState()
 
