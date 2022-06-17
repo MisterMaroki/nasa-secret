@@ -51,7 +51,16 @@ const AuthModal = () => {
   };
 
   return (
-    <Box sx={{ width: "80%", maxWidth: "400px" }}>
+    <Box
+      sx={{
+        width: "80%",
+        maxWidth: "400px",
+        backgroundColor: "whitesmoke",
+        borderRadius: "5px",
+        boxShadow:
+          "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px",
+      }}
+    >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -62,7 +71,9 @@ const AuthModal = () => {
           <Tab label="SIGNUP" {...a11yProps(1)} />
         </Tabs>
       </Box>
+
       {value === 0 ? <Login /> : <SignUp />}
+
       <Box className="google">
         <span style={{ color: "darkgrey" }}>OR</span>
         <GoogleButton

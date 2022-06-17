@@ -19,12 +19,15 @@ const Login = () => {
         fullWidth
         value={inputs.email}
         label="email"
+        type="email"
         onChange={(e) => handleChange(e, "email")}
       />
+
       <TextField
         fullWidth
         value={inputs.password}
         label="password"
+        type="password"
         onChange={(e) => handleChange(e, "password")}
       />
     </div>
