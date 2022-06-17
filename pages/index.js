@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { AuthState } from "../AuthContext";
+import Folder from "../components/Folder";
 import styles from "../styles/Home.module.scss";
 
 const Home = () => {
@@ -13,7 +14,13 @@ const Home = () => {
     }
   }, [user]);
 
-  return user && <div className={styles.container}>Finder: {user}</div>;
+  return (
+    user && (
+      <div className={styles.container}>
+        <Folder />
+      </div>
+    )
+  );
 };
 
 export default Home;
