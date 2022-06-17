@@ -1,13 +1,17 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { AuthState } from '../AuthContext'
-import styles from '../styles/Home.module.css'
-import { useRouter } from 'next/router'
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { AuthState } from "../AuthContext";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
-	const { user } = AuthState()
+  const router = useRouter();
+  const { user } = AuthState();
 
-	if (user === null) console.log('first')
+  useEffect(() => {
+    if (user === null) {
+      router.push("/auth");
+    }
+  }, [user]);
 
-	return user && <div className={styles.container}>Finder: {user}</div>
+  return user && <div className={styles.container}>Finder: {user}</div>;
 }
