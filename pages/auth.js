@@ -14,6 +14,8 @@ const Auth = () => {
 		}
 	}, [user])
 
+	console.log(user)
+
 	return (
 		<div className={[styles.container, styles.main].join(' ')}>
 			<AuthModal />
