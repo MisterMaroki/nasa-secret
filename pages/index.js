@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { AuthState } from '../AuthContext'
+import { SelectionState } from '../SelectionContext'
+
 import Folder from '../components/Folder'
 import styles from '../styles/Auth.module.scss'
 
 const Home = () => {
 	const router = useRouter()
 	const { user } = AuthState()
-
-	const [selected, setSelected] = useState(null)
-
-	// Turbo: ctrl + option + L
-
-	const select = (e, folderName) => {
-		e.stopPropagation()
-		setSelected(folderName)
-	}
+	const { selected, setSelected, select } = SelectionState()
 
 	useEffect(() => {
 		if (user === null) {

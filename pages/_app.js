@@ -1,14 +1,17 @@
-import AuthContext from "../AuthContext";
-import toast, { Toaster } from "react-hot-toast";
-import "../styles/globals.scss";
+import AuthContext from '../AuthContext'
+import SelectionState from '../SelectionContext'
+import toast, { Toaster } from 'react-hot-toast'
+import '../styles/globals.scss'
 
 const MyApp = ({ Component, pageProps }) => {
-  return (
-    <AuthContext>
-      <Component {...pageProps} />
-      <Toaster />
-    </AuthContext>
-  );
-};
+	return (
+		<AuthContext>
+			<SelectionState>
+				<Component {...pageProps} />
+				<Toaster />
+			</SelectionState>
+		</AuthContext>
+	)
+}
 
-export default MyApp;
+export default MyApp
