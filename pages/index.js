@@ -10,6 +10,8 @@ const Home = () => {
 
 	const [selected, setSelected] = useState(null)
 
+	// Turbo: ctrl + option + L
+
 	const select = (e, folderName) => {
 		e.stopPropagation()
 		setSelected(folderName)
@@ -33,13 +35,13 @@ const Home = () => {
 					select={select}
 					selected={selected}
 					title="NASA"
-					route="/folder/nasa"
+					route="/nasa"
 				/>
 				<Folder
 					select={select}
 					selected={selected}
 					title="SpaceX"
-					route="/folder/spacex"
+					route="/spacex"
 				/>
 			</div>
 		)

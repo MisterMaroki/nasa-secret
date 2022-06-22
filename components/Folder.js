@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+
 const Folder = ({ select, selected, title, route }) => {
+	const router = useRouter()
+
+	const handleClick = (e) => {
+		select(e, title)
+
+		selected === title && router.push(route)
+	}
+
 	return (
 		<div
 			className={`${selected === title && 'active'} folder-container`}
-			onClick={(e) => select(e, title)}
+			onClick={handleClick}
 			key="5"
 		>
 			<div

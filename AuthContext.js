@@ -1,42 +1,73 @@
-import React, { createContext, useContext, useState } from "react";
-import { auth, db } from "./firebase";
+import React, { createContext, useContext, useState } from 'react'
+import { auth, db, provider } from './firebase'
 import {
-  onAuthStateChanged,
-  signInWithCredential,
-  GoogleAuthProvider,
-  setPersistence,
-  browserLocalPersistence,
-} from "firebase/auth";
+	onAuthStateChanged,
+	signInWithCredential,
+	GoogleAuthProvider,
+	setPersistence,
+	signInWithPopup,
+	browserLocalPersistence,
+} from 'firebase/auth'
 
-const Auth = createContext();
+const Auth = createContext()
 
 const AuthContext = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
+	const [user, setUser] = useState(null)
+	const [loggedIn, setLoggedIn] = useState(false)
 
-  const init = () => {
-    // Detect auth state
-    onAuthStateChanged(auth, (user) => {
-      if (user != null) {
-        console.log("Below User is logged in:");
-        console.log(user);
-        setUser(user);
-        setLoggedIn(true);
-      } else {
-        setLoggedIn(false);
-        console.log("No user logged in!");
-      }
-    });
-  };
-  init();
+	const signInWithGoogle = () => {
+		signInWithPopup(auth, provider)
+			.then((result) => {
+				// This gives you a Google Access Token. You can use it to access the Google API.
+				const credential = GoogleAuthProvider.credentialFromResult(result)
+				const token = credential.accessToken
+				// The signed-in user info.
+				const user = result.user
+				// ...
+			})
+			.catch((error) => {
+				// Handle Errors here.
+				const errorCode = error.code
+				const errorMessage = error.message
+				// The email of the user's account used.
+				const email = error.customData.email
+				// The AuthCredential type that was used.
+				const credential = GoogleAuthProvider.credentialFromError(error)
+				// ...
+			})
+	}
 
-  return (
-    <Auth.Provider value={{ user, setUser, loggedIn, setLoggedIn }}>
-      {children}
-    </Auth.Provider>
-  );
-};
+	const init = () => {
+		// Detect auth state
+		onAuthStateChanged(auth, (user) => {
+			if (user != null) {
+				// console.log('Below User is logged in:')
+				// console.log(user)
+				setUser(user)
+				setLoggedIn(true)
+			} else {
+				setLoggedIn(false)
+				console.log('No user logged in!')
+			}
+		})
+	}
+	init()
 
-export default AuthContext;
+	return (
+		<Auth.Provider
+			value={{
+				user,
+				setUser,
+				loggedIn,
+				setLoggedIn,
+				signInWithGoogle,
+			}}
+		>
+			{children}
+		</Auth.Provider>
+	)
+}
 
-export const AuthState = () => useContext(Auth);
+export default AuthContext
+
+export const AuthState = () => useContext(Auth)
