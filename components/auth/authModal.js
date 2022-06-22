@@ -9,7 +9,7 @@ import Login from './Login'
 import SignUp from './SignUp'
 import { textFieldSx } from '../../styles/themeVariables'
 import GoogleButton from 'react-google-button'
-import { AuthState } from '../../AuthContext'
+import { AuthState } from '../../context/AuthContext'
 import { auth } from '../../firebase'
 
 const TabPanel = (props) => {

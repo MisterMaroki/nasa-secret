@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import AuthModal from '../components/auth/authModal'
-import { AuthState } from '../AuthContext'
+import { AuthState } from '../context/AuthContext'
 import styles from '../styles/Home.module.scss'
 
 const Auth = () => {

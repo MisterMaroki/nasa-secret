@@ -1,15 +1,15 @@
-import AuthContext from '../AuthContext'
-import SelectionState from '../SelectionContext'
+import AuthContext from '../context/AuthContext'
 import toast, { Toaster } from 'react-hot-toast'
 import '../styles/globals.scss'
+import SelectionContext from '../context/SelectionContext'
 
 const MyApp = ({ Component, pageProps }) => {
 	return (
 		<AuthContext>
-			<SelectionState>
+			<SelectionContext>
 				<Component {...pageProps} />
 				<Toaster />
-			</SelectionState>
+			</SelectionContext>
 		</AuthContext>
 	)
 }

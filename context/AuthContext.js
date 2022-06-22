@@ -1,12 +1,9 @@
 import React, { createContext, useContext, useState } from 'react'
-import { auth, db, provider } from './firebase'
+import { auth, db, provider } from '../firebase'
 import {
 	onAuthStateChanged,
-	signInWithCredential,
 	GoogleAuthProvider,
-	setPersistence,
 	signInWithPopup,
-	browserLocalPersistence,
 } from 'firebase/auth'
 
 const Auth = createContext()

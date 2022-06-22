@@ -20,7 +20,7 @@ const Folder = ({ select, selected, title, route }) => {
 		>
 			<div
 				style={{
-					padding: '4px 7px',
+					padding: '10px ',
 					borderRadius: '7px',
 					backgroundColor:
 						selected === title ? 'rgb(57, 56, 55)' : 'transparent',

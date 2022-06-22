@@ -51,6 +51,9 @@ body * {
 	padding: 1rem;
 	border-radius: 0.1rem;
 	max-width: 150px;
+
+	transition: all 0.1s ease;
+
 	h3 {
 		padding: 4px 8px;
 		border-radius: 4px;
@@ -71,4 +74,32 @@ body * {
 		background: rgb(36, 87, 203);
 	}
 	// background-color: lightblue;
+}
+.expanded {
+	max-width: none;
+	width: max-content;
+	margin: auto;
+	position: relative;
+	animation: fade 0.2s ease-in-out;
+
+	.img-container {
+		width: 50vmax;
+		height: 50vmax;
+	}
+	h3 {
+		display: none;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.hidden {
+	opacity: 0;
 }

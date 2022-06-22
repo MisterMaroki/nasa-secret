@@ -1,12 +1,12 @@
 import React from 'react'
-import File from '../components/File'
+import ImageFile from '../components/ImageFile'
 import data from '../data'
 
 const FolderPage = ({ folder }) => {
 	const thisData = data.filter((x) => x.name === folder)[0].endpoints
 
 	const thisDataMap = thisData.map(({ endpoint, query }) => (
-		<File key={endpoint} title={endpoint} query={query} />
+		<ImageFile key={endpoint} title={endpoint} query={query} />
 	))
 
 	console.log('🚀 ~ file: [id].js ~ line 5 ~ FolderPage ~ thisData', thisData)
