@@ -7,11 +7,7 @@ const Endpoint = ({ endpoint }) => {
 export default Endpoint
 
 export async function getServerSideProps(context) {
-	console.log(
-		'🚀 ~ file: [endpoint].js ~ line 10 ~ getServerSideProps ~ context',
-		context
-	)
 	return {
-		props: { endpoint: `${context.resolvedUrl}` }, // will be passed to the page component as props
+		props: { endpoint: context.resolvedUrl }, // will be passed to the page component as props
 	}
 }
