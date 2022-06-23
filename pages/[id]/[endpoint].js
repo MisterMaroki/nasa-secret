@@ -1,9 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Auth.module.scss'
 import data from '../../data'
 import ImageFile from '../../components/ImageFile'
 
-const Endpoint = ({ params, fetchedData }) => {
+const Endpoint = ({ params }) => {
+	const [fetchedData, setFetchedData] = useState([])
+
+	const idData = data.find((x) => x.name === params.id)
+	const endpointData = idData?.endpoints?.find(
+		(x) => x.name === params.endpoint
+	)
+	const hasQueries = endpointData.queries ? true : false
+	const baseUrl = endpointData?.baseURL
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const res = await fetch(baseUrl)
+				const data = await res.json()
+				setFetchedData(() => (hasQueries ? endpointData.queries : data.photos))
+			} catch (err) {
+				console.log(err)
+			}
+		}
+
+		return () => {
+			fetchData()
+		}
+	}, [])
+
 	const thisData = data
 		.find((x) => x.name === params.id)
 		.endpoints.find((x) => x.name === params.endpoint)
@@ -26,24 +50,9 @@ const Endpoint = ({ params, fetchedData }) => {
 export default Endpoint
 
 export async function getServerSideProps(context) {
-	const idData = data.find((x) => x.name === context.params.id)
-	const endpointData = idData?.endpoints?.find(
-		(x) => x.name === context.params.endpoint
-	)
-	const hasQueries = endpointData.queries ? true : false
-	const baseUrl = endpointData?.baseURL
-
-	const fetchData = async () => {
-		const res = await fetch(baseUrl)
-		const data = await res.json()
-		return data.photos
-	}
 	return {
 		props: {
 			params: context.params,
-			fetchedData: hasQueries
-				? endpointData.queries
-				: (await fetchData()) || [],
 		}, // will be passed to the page component as props
 	}
 }
