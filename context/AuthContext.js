@@ -36,12 +36,11 @@ const AuthContext = ({ children }) => {
 
 	const init = () => {
 		// Detect auth state
-		onAuthStateChanged(auth, (user) => {
-			if (user != null) {
+		onAuthStateChanged(auth, (use) => {
+			if (use != null) {
 				// console.log('Below User is logged in:')
 				// console.log(user)
-				setUser(user)
-				setLoggedIn(true)
+				!user && setUser(use) && setLoggedIn(true)
 			} else {
 				setLoggedIn(false)
 				console.log('No user logged in!')

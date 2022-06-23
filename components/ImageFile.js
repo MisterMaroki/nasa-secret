@@ -8,10 +8,6 @@ const ImageFile = ({ title, query, src, index }) => {
 	const [data, setData] = useState(null)
 	const { select, selected } = SelectionState()
 	const [expanded, setExpanded] = useState(false)
-	console.log(
-		'🚀 ~ file: ImageFile.js ~ line 10 ~ ImageFile ~ expanded',
-		expanded
-	)
 
 	useEffect(() => {
 		const URL = query
@@ -71,28 +67,30 @@ const ImageFile = ({ title, query, src, index }) => {
 				</div>
 			</Draggable>
 			{expanded && (
-				<div
-					className={`${
-						selected === index && 'active'
-					} folder-container expanded
-				`}
-					// onClick={handleClick}
-				>
+				<>
+					<div className="expanded-before" />
 					<div
-						style={{
-							padding: '10px',
-							borderRadius: '7px',
-							backgroundColor:
-								selected === index ? 'rgb(57, 56, 55)' : 'transparent',
-						}}
+						className={`${
+							selected === index && 'active'
+						} folder-container expanded
+					`}
 					>
-						<div className="img-container">
-							{data && <img src={data.url} alt={title} />}
-							{!data && src && <img src={src} alt={title} />}
+						<div
+							style={{
+								padding: '10px',
+								borderRadius: '7px',
+								backgroundColor:
+									selected === index ? 'rgb(57, 56, 55)' : 'transparent',
+							}}
+						>
+							<div className="img-container">
+								{data && <Image src={data.url} alt={title} layout="fill" />}
+								{!data && src && <Image src={src} alt={title} layout="fill" />}
+							</div>
 						</div>
+						<h3>{title}</h3>
 					</div>
-					<h3>{title}</h3>
-				</div>
+				</>
 			)}
 		</>
 	)
