@@ -32,7 +32,7 @@ const Endpoint = ({ params }) => {
 		.find((x) => x.name === params.id)
 		.endpoints.find((x) => x.name === params.endpoint)
 
-	const thisDataMapImg = fetchedData.map((item, index) => (
+	const thisDataMapImg = fetchedData?.map((item, index) => (
 		<ImageFile
 			key={index}
 			title={
