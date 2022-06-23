@@ -79,20 +79,26 @@ body * {
 }
 .expanded {
 	max-width: none;
-	width: max-content;
+	width: 100%;
 
 	position: fixed;
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
 	left: 0;
 	right: 0;
+	top: 0;
+	bottom: 0;
+
 	text-align: center;
 	z-index: 999;
 	animation: fade 0.2s ease-in-out;
 
 	.img-container {
-		width: 50vmax;
-		height: 50vmax;
+		width: 70vmin;
+		height: 70vmin;
+		img {
+			height: 100%;
+			width: 100%;
+		}
 	}
 	h3,
 	h4 {

@@ -7,6 +7,10 @@ const ImageFile = ({ title, query, src, index }) => {
 	const [data, setData] = useState(null)
 	const { select, selected } = SelectionState()
 	const [expanded, setExpanded] = useState(false)
+	console.log(
+		'🚀 ~ file: ImageFile.js ~ line 10 ~ ImageFile ~ expanded',
+		expanded
+	)
 
 	useEffect(() => {
 		const URL = query
@@ -17,8 +21,6 @@ const ImageFile = ({ title, query, src, index }) => {
 				.then((data) => {
 					setData(data)
 				})
-
-		// console.log('🚀 ~ file: File.js ~ line 10 ~ useEffect ~ data', data) // Didn't work due to scope
 	}, [])
 
 	useEffect(() => {
@@ -73,8 +75,8 @@ const ImageFile = ({ title, query, src, index }) => {
 						}}
 					>
 						<div className="img-container">
-							{data && <Image src={data.url} layout="fill" alt={title} />}
-							{!data && src && <Image src={src} layout="fill" alt={title} />}
+							{data && <img src={data.url} alt={title} />}
+							{!data && src && <img src={src} alt={title} />}
 						</div>
 					</div>
 					<h3>{title}</h3>
