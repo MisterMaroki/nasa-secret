@@ -2,13 +2,11 @@
 import { useEffect, useState } from 'react'
 import { SelectionState } from '../context/SelectionContext'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 
 const ImageFile = ({ title, query }) => {
 	const [data, setData] = useState(null)
 	const { select, selected } = SelectionState()
 	const [expanded, setExpanded] = useState(false)
-	const router = useRouter()
 
 	useEffect(() => {
 		const URL = query
@@ -24,9 +22,7 @@ const ImageFile = ({ title, query }) => {
 
 	useEffect(() => {
 		const handleClick = (e) => {
-			// console.log(e.target.toString())
 			setExpanded(false)
-			router.push('/nasa/1')
 		}
 
 		window.addEventListener('click', handleClick)
@@ -36,7 +32,6 @@ const ImageFile = ({ title, query }) => {
 	const handleClick = (e) => {
 		select(e, title)
 		setExpanded(title === selected)
-		// selected === title && router.push(route)
 	}
 
 	return (

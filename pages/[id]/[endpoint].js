@@ -1,10 +1,13 @@
 import React from 'react'
+import styles from '../../styles/Auth.module.scss'
 
 const Endpoint = ({ endpoint, params }) => {
 	return (
-		<div>
+		<div className={styles.container}>
 			{endpoint}
+			<br />
 			{params.id}
+			<br />
 			{params.endpoint}
 		</div>
 	)
