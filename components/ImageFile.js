@@ -10,13 +10,14 @@ import {
 
 const ImageFile = ({ title, query, src, index }) => {
 	const [data, setData] = useState(null)
-	const { select, selected, setSelected } = SelectionState()
-	const [expanded, setExpanded] = useState(selected === index)
+	const { select, selected, setSelected, expanded, setExpanded } =
+		SelectionState()
 
 	useEffect(() => {
 		const URL = query
 
-		!src &&
+		return () =>
+			!src &&
 			fetch(URL)
 				.then((res) => res.json())
 				.then((data) => {
@@ -33,18 +34,25 @@ const ImageFile = ({ title, query, src, index }) => {
 		return () => window.removeEventListener('click', handleClick)
 	}, [])
 
-	useEffect(() => {
-		setExpanded(index === selected)
-	}, [selected, index])
-
 	const handleClick = (e) => {
+		e.stopPropagation()
+		selected === index && setExpanded(index === selected)
+	}
+	const handleMouseEnter = (e) => {
+		e.stopPropagation()
 		select(e, index)
+	}
+	const handleMouseLeave = (e) => {
+		e.stopPropagation()
+		selected !== index && select(e, null)
 	}
 
 	return (
 		<>
 			<div
 				className={`${selected === index && 'active'} folder-container`}
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
 				onClick={handleClick}
 			>
 				<div
@@ -72,21 +80,15 @@ const ImageFile = ({ title, query, src, index }) => {
 				<h4>{title}</h4>
 			</div>
 
-			{expanded && (
+			{expanded && index === selected && (
 				<>
 					<div className="expanded-before" />
-					<div
-						className={`${
-							selected === index && 'active'
-						} folder-container expanded
-					`}
-					>
+					<div className={`active folder-container expanded`}>
 						<div
 							style={{
 								padding: '10px',
 								borderRadius: '7px',
-								backgroundColor:
-									selected === index ? 'rgb(57, 56, 55)' : 'transparent',
+								backgroundColor: 'rgb(57, 56, 55)',
 							}}
 						>
 							<div className="img-container">
@@ -100,6 +102,7 @@ const ImageFile = ({ title, query, src, index }) => {
 								onClick={(e) => {
 									e.stopPropagation()
 									setSelected(selected - 1)
+									setExpanded(selected - 1 === index)
 								}}
 							>
 								<NavigateBeforeOutlined />

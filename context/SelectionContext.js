@@ -6,6 +6,8 @@ const Selection = createContext()
 
 const SelectionContext = ({ children }) => {
 	const [selected, setSelected] = useState(() => null)
+	const [expanded, setExpanded] = useState(false)
+
 	const { user } = AuthState()
 	const router = useRouter()
 
@@ -29,7 +31,9 @@ const SelectionContext = ({ children }) => {
 	}
 
 	return (
-		<Selection.Provider value={{ selected, setSelected, select }}>
+		<Selection.Provider
+			value={{ selected, setSelected, select, expanded, setExpanded }}
+		>
 			{children}
 		</Selection.Provider>
 	)
