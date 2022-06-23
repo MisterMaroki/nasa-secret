@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { SelectionState } from '../context/SelectionContext'
 import Image from 'next/image'
+import Draggable from 'react-draggable'
 
 const ImageFile = ({ title, query, src, index }) => {
 	const [data, setData] = useState(null)
@@ -39,25 +40,36 @@ const ImageFile = ({ title, query, src, index }) => {
 
 	return (
 		<>
-			<div
-				className={`${selected === index && 'active'} folder-container`}
-				onClick={handleClick}
-			>
+			<Draggable>
 				<div
-					style={{
-						padding: '10px',
-						borderRadius: '7px',
-						backgroundColor:
-							selected === index ? 'rgb(57, 56, 55)' : 'transparent',
-					}}
+					className={`${selected === index && 'active'} folder-container`}
+					onClick={handleClick}
 				>
-					<div className="img-container">
-						{data && <Image src={data.url} layout="fill" alt={title} />}
-						{!data && src && <Image src={src} layout="fill" alt={title} />}
+					<div
+						style={{
+							padding: '10px',
+							borderRadius: '7px',
+							backgroundColor:
+								selected === index ? 'rgb(57, 56, 55)' : 'transparent',
+						}}
+					>
+						<div className="img-container">
+							{data && (
+								<Image
+									src={data.url}
+									layout="fill"
+									alt={title}
+									draggable="false"
+								/>
+							)}
+							{!data && src && (
+								<Image src={src} layout="fill" alt={title} draggable="false" />
+							)}
+						</div>
 					</div>
+					<h4>{title}</h4>
 				</div>
-				<h4>{title}</h4>
-			</div>
+			</Draggable>
 			{expanded && (
 				<div
 					className={`${

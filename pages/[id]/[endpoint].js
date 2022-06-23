@@ -33,15 +33,11 @@ export async function getServerSideProps(context) {
 	const hasQueries = endpointData.queries ? true : false
 	const baseUrl = endpointData?.baseURL
 
-	let photoArr = []
 	const fetchData = async () => {
 		const res = await fetch(baseUrl)
 		const data = await res.json()
-		photoArr = data.photos
 		return data.photos
 	}
-	console.log(photoArr)
-	// !hasQueries && fetchData()
 	return {
 		props: {
 			params: context.params,
