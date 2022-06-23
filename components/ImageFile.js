@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 import { SelectionState } from '../context/SelectionContext'
 import Image from 'next/image'
-import Draggable from 'react-draggable'
 
 const ImageFile = ({ title, query, src, index }) => {
 	const [data, setData] = useState(null)
@@ -18,7 +17,7 @@ const ImageFile = ({ title, query, src, index }) => {
 				.then((data) => {
 					setData(data)
 				})
-	}, [])
+	}, [query, src])
 
 	useEffect(() => {
 		const handleClick = (e) => {
@@ -36,36 +35,35 @@ const ImageFile = ({ title, query, src, index }) => {
 
 	return (
 		<>
-			<Draggable>
+			<div
+				className={`${selected === index && 'active'} folder-container`}
+				onClick={handleClick}
+			>
 				<div
-					className={`${selected === index && 'active'} folder-container`}
-					onClick={handleClick}
+					style={{
+						padding: '10px',
+						borderRadius: '7px',
+						backgroundColor:
+							selected === index ? 'rgb(57, 56, 55)' : 'transparent',
+					}}
 				>
-					<div
-						style={{
-							padding: '10px',
-							borderRadius: '7px',
-							backgroundColor:
-								selected === index ? 'rgb(57, 56, 55)' : 'transparent',
-						}}
-					>
-						<div className="img-container">
-							{data && (
-								<Image
-									src={data.url}
-									layout="fill"
-									alt={title}
-									draggable="false"
-								/>
-							)}
-							{!data && src && (
-								<Image src={src} layout="fill" alt={title} draggable="false" />
-							)}
-						</div>
+					<div className="img-container">
+						{data && (
+							<Image
+								src={data.url}
+								layout="fill"
+								alt={title}
+								draggable="false"
+							/>
+						)}
+						{!data && src && (
+							<Image src={src} layout="fill" alt={title} draggable="false" />
+						)}
 					</div>
-					<h4>{title}</h4>
 				</div>
-			</Draggable>
+				<h4>{title}</h4>
+			</div>
+
 			{expanded && (
 				<>
 					<div className="expanded-before" />

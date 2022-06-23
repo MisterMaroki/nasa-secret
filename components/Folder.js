@@ -6,7 +6,7 @@ import Draggable from 'react-draggable'
 
 const Folder = ({ select, selected, title, route, index }) => {
 	const router = useRouter()
-
+	const nodeRef = React.useRef(null)
 	const handleClick = (e) => {
 		select(e, index)
 
@@ -14,8 +14,9 @@ const Folder = ({ select, selected, title, route, index }) => {
 	}
 
 	return (
-		<Draggable>
+		<Draggable nodeRef={nodeRef}>
 			<div
+				ref={nodeRef}
 				className={`${selected === index && 'active'} folder-container`}
 				onClick={handleClick}
 				key="5"
