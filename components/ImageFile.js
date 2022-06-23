@@ -60,7 +60,7 @@ const ImageFile = ({ title, query }) => {
 						)}
 					</div>
 				</div>
-				<h3>{title}</h3>
+				<h4>{title}</h4>
 			</div>
 			{expanded && (
 				<div

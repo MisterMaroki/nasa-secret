@@ -13,11 +13,11 @@ const FolderPage = ({ folder }) => {
 	// 	) : null
 	// )
 
-	const thisDataMap = thisData.map(({ endpoint, query }, index) => (
+	const thisDataMap = thisData.map(({ name }, index) => (
 		<Folder
-			key={endpoint}
-			title={endpoint}
-			route={`${folder}/${endpoint}`}
+			key={name}
+			title={name}
+			route={`${folder}/${name}`}
 			select={select}
 			selected={selected}
 		/>
@@ -29,7 +29,6 @@ const FolderPage = ({ folder }) => {
 	// 				title="NASA"
 	// 				route="/nasa"
 	// 			/>
-	console.log('🚀 ~ file: [id].js ~ line 5 ~ FolderPage ~ thisData', thisData)
 
 	return <div className={styles.container}>{thisDataMap}</div>
 }
