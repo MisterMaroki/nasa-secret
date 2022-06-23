@@ -16,8 +16,7 @@ const ImageFile = ({ title, query, src, index }) => {
 	useEffect(() => {
 		const URL = query
 
-		return () =>
-			!src &&
+		!src &&
 			fetch(URL)
 				.then((res) => res.json())
 				.then((data) => {
