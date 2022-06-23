@@ -135,9 +135,16 @@ body * {
 	position: fixed;
 	width: 100vw;
 	height: 100%;
-	background: rgba(13, 12, 12, 0.483);
-	backdrop-filter: blur(4px);
+	background: rgba(13, 12, 12, 0.683);
+	backdrop-filter: blur(7px);
 	top: 0;
 	left: 0;
 	z-index: 2;
+}
+.expanded-buttons {
+	* {
+		font-size: 4rem !important;
+	}
+	position: fixed;
+	bottom: -5rem;
 }

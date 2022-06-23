@@ -2,11 +2,16 @@
 import { useEffect, useState } from 'react'
 import { SelectionState } from '../context/SelectionContext'
 import Image from 'next/image'
+import { IconButton } from '@mui/material'
+import {
+	NavigateBeforeOutlined,
+	NavigateNextOutlined,
+} from '@mui/icons-material'
 
 const ImageFile = ({ title, query, src, index }) => {
 	const [data, setData] = useState(null)
-	const { select, selected } = SelectionState()
-	const [expanded, setExpanded] = useState(false)
+	const { select, selected, setSelected } = SelectionState()
+	const [expanded, setExpanded] = useState(selected === index)
 
 	useEffect(() => {
 		const URL = query
@@ -28,9 +33,12 @@ const ImageFile = ({ title, query, src, index }) => {
 		return () => window.removeEventListener('click', handleClick)
 	}, [])
 
+	useEffect(() => {
+		setExpanded(index === selected)
+	}, [selected, index])
+
 	const handleClick = (e) => {
 		select(e, index)
-		setExpanded(index === selected)
 	}
 
 	return (
@@ -86,7 +94,26 @@ const ImageFile = ({ title, query, src, index }) => {
 								{!data && src && <Image src={src} alt={title} layout="fill" />}
 							</div>
 						</div>
-						<h3>{title}</h3>
+						<div className="expanded-buttons">
+							<IconButton
+								color="primary"
+								onClick={(e) => {
+									e.stopPropagation()
+									setSelected(selected - 1)
+								}}
+							>
+								<NavigateBeforeOutlined />
+							</IconButton>
+							<IconButton
+								color="primary"
+								onClick={(e) => {
+									e.stopPropagation()
+									setSelected(selected + 1)
+								}}
+							>
+								<NavigateNextOutlined />
+							</IconButton>
+						</div>
 					</div>
 				</>
 			)}
