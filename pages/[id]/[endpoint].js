@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles/Auth.module.scss'
 import data from '../../data'
 import ImageFile from '../../components/ImageFile'
 
-const Endpoint = ({ params }) => {
-	const thisData = data.filter((x) => x.name === params.id)[0].endpoints[0]
+const Endpoint = ({ params, fetchedData }) => {
+	// console.log(
+	// 	'🚀 ~ file: [endpoint].js ~ line 7 ~ Endpoint ~ fetchedData',
+	// 	fetchedData
+	// )
+	const thisData = data
+		.find((x) => x.name === params.id)
+		.endpoints.find((x) => x.name === params.endpoint)
 
-	const thisDataMapImg = thisData.queries.map((item, index) => (
+	// const [hasQueries, setHasQueries] = useState(thisData.queries ? true : false)
+
+	const thisDataMapImg = fetchedData.map((item, index) => (
 		<ImageFile
 			key={index}
-			title={item.date}
+			title={item.date || item.camera.full_name}
 			query={`${thisData.baseURL}${item.query}`}
+			src={item.img_src}
 		/>
 	))
 
@@ -20,7 +29,28 @@ const Endpoint = ({ params }) => {
 export default Endpoint
 
 export async function getServerSideProps(context) {
+	const idData = data.find((x) => x.name === context.params.id)
+	const endpointData = idData?.endpoints?.find(
+		(x) => x.name === context.params.endpoint
+	)
+	const hasQueries = endpointData.queries ? true : false
+	const baseUrl = endpointData?.baseURL
+
+	let photoArr = []
+	const fetchData = async () => {
+		const res = await fetch(baseUrl)
+		const data = await res.json()
+		photoArr = data.photos
+		return data.photos
+	}
+	console.log(photoArr)
+	// !hasQueries && fetchData()
 	return {
-		props: { params: context.params }, // will be passed to the page component as props
+		props: {
+			params: context.params,
+			fetchedData: hasQueries
+				? endpointData.queries
+				: (await fetchData()) || [],
+		}, // will be passed to the page component as props
 	}
 }

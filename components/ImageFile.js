@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { SelectionState } from '../context/SelectionContext'
 import Image from 'next/image'
 
-const ImageFile = ({ title, query }) => {
+const ImageFile = ({ title, query, src }) => {
 	const [data, setData] = useState(null)
 	const { select, selected } = SelectionState()
 	const [expanded, setExpanded] = useState(false)
@@ -11,11 +11,12 @@ const ImageFile = ({ title, query }) => {
 	useEffect(() => {
 		const URL = query
 
-		fetch(URL)
-			.then((res) => res.json())
-			.then((data) => {
-				setData(data)
-			})
+		!src &&
+			fetch(URL)
+				.then((res) => res.json())
+				.then((data) => {
+					setData(data)
+				})
 
 		// console.log('🚀 ~ file: File.js ~ line 10 ~ useEffect ~ data', data) // Didn't work due to scope
 	}, [])
@@ -52,7 +53,7 @@ const ImageFile = ({ title, query }) => {
 					<div className="img-container">
 						{data && (
 							<Image
-								src={data.url}
+								src={data.url || src}
 								layout="fill"
 								alt={title}
 								style={{ maxWidth: '10px' }}

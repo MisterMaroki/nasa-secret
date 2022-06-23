@@ -6,7 +6,7 @@ export default [
 			{
 				name: 'apod',
 				baseURL:
-					'https://api.nasa.gov/planetary/apod?api_key=0HfzEPXypyWSKJ3D3Z99WuTHN5WZ9riC21562P3n',
+					'https://api.nasa.gov/planetary/apod?api_key=hUp4PKIlIDJ2LQeNvl0v6fGaNQzqI389m9rVBHuf',
 				queries: [
 					{ date: '2022-05-22', query: '&date=2022-05-22', type: 'image' },
 					{ date: '2022-05-23', query: '&date=2022-05-23', type: 'image' },
@@ -31,6 +31,15 @@ export default [
 					{ date: '2022-06-12', query: '&date=2022-06-12', type: 'image' },
 				],
 			},
+			{
+				name: 'mars',
+				baseURL:
+					'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=hUp4PKIlIDJ2LQeNvl0v6fGaNQzqI389m9rVBHuf',
+			},
 		],
 	},
 ]
+
+//check if the queries array exists in the endpoint object
+// if it does, loop through the queries array and create a new array of objects with the date and query
+// if it doesn't, just create a new array of objects with the baseUrl data

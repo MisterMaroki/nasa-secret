@@ -5,7 +5,7 @@ import data from '../data'
 import styles from '../styles/Auth.module.scss'
 
 const FolderPage = ({ folder }) => {
-	const thisData = data.filter((x) => x.name === folder)[0].endpoints
+	const thisData = data.filter((x) => x.name === folder)[0]?.endpoints
 	const { select, selected } = SelectionState()
 	// const thisDataMap = thisData.map(({ endpoint, query }, index) =>
 	// 	data[index] ? (
@@ -13,7 +13,7 @@ const FolderPage = ({ folder }) => {
 	// 	) : null
 	// )
 
-	const thisDataMap = thisData.map(({ name }, index) => (
+	const thisDataMap = thisData?.map(({ name }, index) => (
 		<Folder
 			key={name}
 			title={name}
