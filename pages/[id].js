@@ -7,11 +7,6 @@ import styles from '../styles/Auth.module.scss'
 const FolderPage = ({ folder }) => {
 	const thisData = data.filter((x) => x.name === folder)[0]?.endpoints
 	const { select, selected } = SelectionState()
-	// const thisDataMap = thisData.map(({ endpoint, query }, index) =>
-	// 	data[index] ? (
-	// 		<ImageFile key={endpoint} title={endpoint} query={query} />
-	// 	) : null
-	// )
 
 	const thisDataMap = thisData?.map(({ name }, index) => (
 		<Folder
@@ -20,15 +15,9 @@ const FolderPage = ({ folder }) => {
 			route={`${folder}/${name}`}
 			select={select}
 			selected={selected}
+			index={index}
 		/>
 	))
-
-	// <Folder
-	// 				select={select}
-	// 				selected={selected}
-	// 				title="NASA"
-	// 				route="/nasa"
-	// 			/>
 
 	return <div className={styles.container}>{thisDataMap}</div>
 }

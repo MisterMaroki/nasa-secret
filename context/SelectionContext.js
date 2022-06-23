@@ -23,9 +23,9 @@ const SelectionContext = ({ children }) => {
 		return () => window.removeEventListener('click', handleClick)
 	}, [user])
 
-	const select = (e, folderName) => {
+	const select = (e, index) => {
 		e.stopPropagation()
-		setSelected(folderName)
+		setSelected(index)
 	}
 
 	return (

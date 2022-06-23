@@ -17,9 +17,12 @@ const Endpoint = ({ params, fetchedData }) => {
 	const thisDataMapImg = fetchedData.map((item, index) => (
 		<ImageFile
 			key={index}
-			title={item.date || item.camera.full_name}
+			title={
+				item.date || item.camera.full_name.split(' ').slice(0, 2).join(' ')
+			}
 			query={`${thisData.baseURL}${item.query}`}
 			src={item.img_src}
+			index={index}
 		/>
 	))
 

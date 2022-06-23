@@ -13,16 +13,20 @@ const Home = () => {
 		user && (
 			<div className={styles.container}>
 				<Folder
+					key="fddg"
 					select={select}
 					selected={selected}
 					title="NASA"
 					route="/nasa"
+					index={1}
 				/>
 				<Folder
+					key="jkbnj"
 					select={select}
 					selected={selected}
 					title="SpaceX"
 					route="/spacex"
+					index={2}
 				/>
 			</div>
 		)

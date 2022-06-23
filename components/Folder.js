@@ -3,18 +3,18 @@ import FolderIcon from '@mui/icons-material/Folder'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-const Folder = ({ select, selected, title, route }) => {
+const Folder = ({ select, selected, title, route, index }) => {
 	const router = useRouter()
 
 	const handleClick = (e) => {
-		select(e, title)
+		select(e, index)
 
-		selected === title && router.push(route)
+		selected === index && router.push(route)
 	}
 
 	return (
 		<div
-			className={`${selected === title && 'active'} folder-container`}
+			className={`${selected === index && 'active'} folder-container`}
 			onClick={handleClick}
 			key="5"
 		>
@@ -23,16 +23,11 @@ const Folder = ({ select, selected, title, route }) => {
 					padding: '10px ',
 					borderRadius: '7px',
 					backgroundColor:
-						selected === title ? 'rgb(57, 56, 55)' : 'transparent',
+						selected === index ? 'rgb(57, 56, 55)' : 'transparent',
 				}}
 			>
 				<div className="img-container">
-					<Image
-						src={'/folder.svg'}
-						layout="fill"
-						alt="folder"
-						style={{ maxWidth: '10px' }}
-					/>
+					<Image src={'/folder.svg'} layout="fill" alt="folder" />
 				</div>
 			</div>
 			<h3>{title}</h3>

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { SelectionState } from '../context/SelectionContext'
 import Image from 'next/image'
 
-const ImageFile = ({ title, query, src }) => {
+const ImageFile = ({ title, query, src, index }) => {
 	const [data, setData] = useState(null)
 	const { select, selected } = SelectionState()
 	const [expanded, setExpanded] = useState(false)
@@ -31,34 +31,27 @@ const ImageFile = ({ title, query, src }) => {
 	}, [])
 
 	const handleClick = (e) => {
-		select(e, title)
-		setExpanded(title === selected)
+		select(e, index)
+		setExpanded(index === selected)
 	}
 
 	return (
 		<>
 			<div
-				className={`${selected === title && 'active'} folder-container`}
+				className={`${selected === index && 'active'} folder-container`}
 				onClick={handleClick}
-				key="5"
 			>
 				<div
 					style={{
 						padding: '10px',
 						borderRadius: '7px',
 						backgroundColor:
-							selected === title ? 'rgb(57, 56, 55)' : 'transparent',
+							selected === index ? 'rgb(57, 56, 55)' : 'transparent',
 					}}
 				>
 					<div className="img-container">
-						{data && (
-							<Image
-								src={data.url || src}
-								layout="fill"
-								alt={title}
-								style={{ maxWidth: '10px' }}
-							/>
-						)}
+						{data && <Image src={data.url} layout="fill" alt={title} />}
+						{!data && src && <Image src={src} layout="fill" alt={title} />}
 					</div>
 				</div>
 				<h4>{title}</h4>
@@ -66,29 +59,22 @@ const ImageFile = ({ title, query, src }) => {
 			{expanded && (
 				<div
 					className={`${
-						selected === title && 'active'
+						selected === index && 'active'
 					} folder-container expanded
 				`}
 					// onClick={handleClick}
-					key="5"
 				>
 					<div
 						style={{
 							padding: '10px',
 							borderRadius: '7px',
 							backgroundColor:
-								selected === title ? 'rgb(57, 56, 55)' : 'transparent',
+								selected === index ? 'rgb(57, 56, 55)' : 'transparent',
 						}}
 					>
 						<div className="img-container">
-							{data && (
-								<Image
-									src={data.url}
-									layout="fill"
-									alt={title}
-									style={{ maxWidth: '10px' }}
-								/>
-							)}
+							{data && <Image src={data.url} layout="fill" alt={title} />}
+							{!data && src && <Image src={src} layout="fill" alt={title} />}
 						</div>
 					</div>
 					<h3>{title}</h3>
