@@ -23,9 +23,7 @@ const Endpoint = ({ params }) => {
 			}
 		}
 
-		return () => {
-			fetchData()
-		}
+		fetchData()
 	}, [])
 
 	const thisData = data
