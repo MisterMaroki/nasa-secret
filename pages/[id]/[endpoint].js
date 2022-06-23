@@ -4,15 +4,9 @@ import data from '../../data'
 import ImageFile from '../../components/ImageFile'
 
 const Endpoint = ({ params, fetchedData }) => {
-	// console.log(
-	// 	'🚀 ~ file: [endpoint].js ~ line 7 ~ Endpoint ~ fetchedData',
-	// 	fetchedData
-	// )
 	const thisData = data
 		.find((x) => x.name === params.id)
 		.endpoints.find((x) => x.name === params.endpoint)
-
-	// const [hasQueries, setHasQueries] = useState(thisData.queries ? true : false)
 
 	const thisDataMapImg = fetchedData.map((item, index) => (
 		<ImageFile

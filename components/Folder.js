@@ -9,7 +9,7 @@ const Folder = ({ select, selected, title, route, index }) => {
 	const handleClick = (e) => {
 		select(e, index)
 
-		selected === index && router.push(route)
+		selected === index && router.push(route) && select(e, null)
 	}
 
 	return (
