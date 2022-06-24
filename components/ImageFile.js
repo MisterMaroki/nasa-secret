@@ -101,7 +101,6 @@ const ImageFile = ({ title, query, src, index }) => {
 								onClick={(e) => {
 									e.stopPropagation()
 									setSelected(selected - 1)
-									setExpanded(selected - 1 === index)
 								}}
 							>
 								<NavigateBeforeOutlined />
