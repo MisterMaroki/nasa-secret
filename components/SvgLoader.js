@@ -1,5 +1,12 @@
 export const SvgLoader = () => (
-	<div style={{ width: '100px' }}>
+	<div
+		style={{
+			width: '100px',
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+		}}
+	>
 		<svg
 			version="1.1"
 			id="L4"

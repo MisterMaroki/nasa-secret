@@ -66,6 +66,29 @@ export default [
 				baseURL:
 					'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=hUp4PKIlIDJ2LQeNvl0v6fGaNQzqI389m9rVBHuf',
 			},
+			{
+				name: 'epic',
+				baseURL:
+					//https://api.nasa.gov/EPIC/archive/natural/2019/05/30/png/epic_1b_20190530011359.png?api_key=DEMO_KEY
+					'https://epic.gsfc.nasa.gov/api/natural',
+				queries: [
+					{ date: '2022-05-22', query: '&date=2022-05-22', type: 'folder' },
+					{ date: '2022-05-23', query: '&date=2022-05-23', type: 'folder' },
+					{ date: '2022-05-24', query: '&date=2022-05-24', type: 'folder' },
+					{ date: '2022-05-25', query: '&date=2022-05-25', type: 'folder' },
+					{ date: '2022-05-26', query: '&date=2022-05-26', type: 'folder' },
+					{ date: '2022-05-27', query: '&date=2022-05-27', type: 'folder' },
+					{ date: '2022-05-28', query: '&date=2022-05-28', type: 'folder' },
+					{ date: '2022-05-30', query: '&date=2022-05-30', type: 'folder' },
+					{ date: '2022-05-31', query: '&date=2022-05-31', type: 'folder' },
+					{ date: '2022-06-01', query: '&date=2022-06-01', type: 'folder' },
+					{ date: '2022-06-02', query: '&date=2022-06-02', type: 'folder' },
+					{ date: '2022-06-03', query: '&date=2022-06-03', type: 'folder' },
+					{ date: '2022-06-04', query: '&date=2022-06-04', type: 'folder' },
+					{ date: '2022-06-05', query: '&date=2022-06-05', type: 'folder' },
+					{ date: '2022-06-06', query: '&date=2022-06-06', type: 'folder' },
+				],
+			},
 		],
 	},
 ]

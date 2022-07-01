@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import FolderIcon from '@mui/icons-material/Folder'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import Draggable from 'react-draggable'
 import { isMobile } from 'react-device-detect'
 
 const Folder = ({ select, selected, title, route, index }) => {
 	const router = useRouter()
-	const nodeRef = React.useRef(null)
+
 	const handleClick = (e) => {
 		select(e, index)
 
@@ -15,27 +14,12 @@ const Folder = ({ select, selected, title, route, index }) => {
 	}
 
 	return (
-		<>
-			{!isMobile ? (
-				<Draggable nodeRef={nodeRef}>
-					<Element
-						title={title}
-						nodeRef={nodeRef}
-						selected={selected}
-						index={index}
-						handleClick={handleClick}
-					/>
-				</Draggable>
-			) : (
-				<Element
-					title={title}
-					nodeRef={nodeRef}
-					selected={selected}
-					index={index}
-					handleClick={handleClick}
-				/>
-			)}
-		</>
+		<Element
+			title={title}
+			selected={selected}
+			index={index}
+			handleClick={handleClick}
+		/>
 	)
 }
 
@@ -64,6 +48,6 @@ const Element = ({ title, nodeRef, selected, index, handleClick }) => (
 				/>
 			</div>
 		</div>
-		<h3>{title}</h3>
+		<h3 style={{ whiteSpace: 'nowrap' }}>{title}</h3>
 	</div>
 )
